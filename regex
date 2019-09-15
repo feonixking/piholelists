@@ -14,3 +14,11 @@
 ^stat(s|istics)?[0-9]*[-.]
 ^track(ers?|ing)?[0-9]*[-.]
 ^traff(ic)?[-.]
+youtube.com##.masthead-ad-control
+youtube.com##.ad-div
+youtube.com##.pyv-afc-ads-container
+youtube.com###promotion-shelf
+*_ad_$media,domain=youtube.com,3p
+youtube.com##.ytp-ad-progress
+youtube.com###masthead-ad
+blackspigot.com##+js(abort-on-property-write.js, AdBlockDetectorWorkaround)
