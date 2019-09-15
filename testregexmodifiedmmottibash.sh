@@ -4,7 +4,7 @@
 db_gravity='/etc/pihole/gravity.db'
 file_pihole_regex='/etc/pihole/regex.list'
 file_mmotti_regex='/etc/pihole/mmotti-regex.list'
-file_mmotti_remote_regex='https://github.com/uBlockOrigin/uAssets/blob/master/filters/annoyances.txt'
+file_mmotti_remote_regex='https://github.com/feonixking/piholelists/blob/master/regex'
 installer_comment='github.com/mmotti/pihole-regex'
 
 # Determine whether we are using Pi-hole DB
