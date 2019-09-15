@@ -4,6 +4,11 @@
 
 original
 
-curl -sSl https://raw.githubusercontent.com/mmotti/pihole-regex/master/install.sh | bash
+https://github.com/mmotti/pihole-regex
+
+
 
 modified
+curl -sSl https://github.com/feonixking/piholelists/blob/master/testregexmodifiedmmottibash.sh  | bash
+
+notworking 
