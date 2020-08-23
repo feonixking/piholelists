@@ -1,0 +1,90 @@
+sudo apt-get update
+sudo apt-get install locate
+sudo updatedb
+sudo apt-get install squid3
+sudo update-rc.d squid enable
+sudo updatedb
+sudo locate squid.conf
+sudo nano -c /etc/squid3/squid.conf
+
+..............................................
+acl localnet src 10.0.0.0/8
+acl localnet src 172.16.0.0/12
+acl localnet src 192.168.0.0/16
+http_access allow localnet <---- add
+
+..............................................
+sudo service squid reload////OR/////sudo service squid restart
+XXXXXXXXXXready to proxy on SINGLE pc/phone 192.1.x.x:3128 <--serverlocationXXXXXXX
+
+
+sudo apt-get install squidGuard
+cd /var/lib/squidguard/db
+sudo nano testdomains
+
+yahoo.com
+msn.com
+whatever-you-want-to-block.com
+
+cd /etc/squidguard
+sudo cp squidGuard.conf squidGuard.conf.bak
+sudo nano -c /etc/squidguard/squidGuard.conf
+..............................................
+#dest adult {
+#   domainlist        BL/porn/domains
+#   urllist        BL/porn/urls
+#   expressionlist    BL/adult/expressions
+#   redirect http://admin.foo.bar.de/cgi/blocked?clientaddr=%a+clientname=%n+clientuser=%i+clientgroup=%s+targetgroup=%t+url=%u
+#}
+
+dest test {
+domainlist testdomains    <----- add this
+}
+
+acl {
+admin {
+pass any
+}
+
+foo-clients within workhours {
+#           pass good !in-addr !adult any   <---- add the #
+} else {
+pass any
+}
+
+bar-clients {
+pass local none
+}
+
+default {
+pass !test any                              <--------- change this
+redirect http://127.0.0.1/blocked.html      <----/
+}
+}
+
+..............................................
+
+
+
+sudo apt-get install apache2
+cd /var/www/html
+sudo nano blocked.html
+..............................................
+<html>
+<head>
+<title>Blocked!</title>
+</head>
+<body>
+<h1>You have been blocked by Raspberry Pi administrator!</h1>
+</body>
+</html>
+..............................................
+sudo squidGuard -C all
+sudo chown -R proxy:proxy /var/lib/squidguard/db
+sudo chown -R proxy:proxy /var/log/squidguard
+sudo chown -R proxy:proxy /usr/bin/squidGuard
+sudo nano -c /etc/squid3/squid.conf
+..............................................
+url_rewrite_program /usr/bin/squidGuard
+..............................................
+sudo service squid reload
