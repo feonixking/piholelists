@@ -83,7 +83,7 @@ sudo squidGuard -C all
 sudo chown -R proxy:proxy /var/lib/squidguard/db
 sudo chown -R proxy:proxy /var/log/squidguard
 sudo chown -R proxy:proxy /usr/bin/squidGuard
-sudo nano -c /etc/squid3/squid.conf
+sudo nano -c /etc/squid/squid.conf
 ..............................................
 url_rewrite_program /usr/bin/squidGuard
 ..............................................
