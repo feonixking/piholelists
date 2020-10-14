@@ -5,7 +5,7 @@ sudo apt-get install squid3
 sudo update-rc.d squid enable
 sudo updatedb
 sudo locate squid.conf
-sudo nano -c /etc/squid3/squid.conf
+sudo nano -c /etc/squid/squid.conf
 
 ..............................................
 acl localnet src 10.0.0.0/8
@@ -18,7 +18,7 @@ sudo service squid reload////OR/////sudo service squid restart
 XXXXXXXXXXready to proxy on SINGLE pc/phone 192.1.x.x:3128 <--serverlocationXXXXXXX
 
 
-sudo apt-get install squidGuard
+sudo apt-get install squidguard
 cd /var/lib/squidguard/db
 sudo nano testdomains
 
